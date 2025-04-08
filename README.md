@@ -9,4 +9,5 @@ Ce dépôt contient deux parties :
 
  - Le reste du dépôt correspond au mini-projet de fin de cours. Il s'agit d'un projet sur la détection automatique de fausse information.
      _Données : https://www.kaggle.com/datasets/csmalarkodi/isot-fake-news-dataset/data?select=True.csv
+   
      _Papier de référence : https://bura.brunel.ac.uk/bitstream/2438/25909/1/FullText.pdf
