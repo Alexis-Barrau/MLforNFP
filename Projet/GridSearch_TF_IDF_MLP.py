@@ -30,10 +30,10 @@ y = Isot['label']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Affichage des infos sur les données
-print(f"📚 Nombre total de documents : {len(X)}")
-print(f"🧪 Train set : {len(X_train)} documents")
-print(f"🧾 Test set : {len(X_test)} documents")
-print(f"🧠 Répartition des classes (train set) :\n{y_train.value_counts()}")
+print(f"Nombre total de documents : {len(X)}")
+print(f"Train set : {len(X_train)} documents")
+print(f"Test set : {len(X_test)} documents")
+print(f"Répartition des classes (train set) :\n{y_train.value_counts()}")
 logging.info(f"Nombre total de documents : {len(X)}")
 logging.info(f"Train size : {len(X_train)} | Test size : {len(X_test)}")
 logging.info(f"Répartition des classes (train) :\n{y_train.value_counts().to_string()}")
@@ -58,7 +58,7 @@ param_grid = {
 total_configs = 1
 for param, values in param_grid.items():
     total_configs *= len(values)
-print(f"🔧 Nombre total de combinaisons testées : {total_configs}")
+print(f" Nombre total de combinaisons testées : {total_configs}")
 logging.info(f"Nombre total de combinaisons testées : {total_configs}")
 
 # GridSearch
@@ -72,33 +72,33 @@ grid_search = GridSearchCV(
 
 # Entraînement
 start_time = time.time()
-print("🔁 Début de l'entraînement GridSearchCV...")
+print("Début de l'entraînement GridSearchCV...")
 logging.info("Début de l'entraînement avec GridSearchCV...")
 grid_search.fit(X_train, y_train)
 train_duration = time.time() - start_time
-print(f"✅ Entraînement terminé en {train_duration:.2f} secondes.")
+print(f"Entraînement terminé en {train_duration:.2f} secondes.")
 logging.info(f"Durée entraînement GridSearchCV : {train_duration:.2f} secondes.")
 
 # Meilleurs hyperparamètres
-print("🧠 Meilleurs hyperparamètres :")
+print("Meilleurs hyperparamètres :")
 print(grid_search.best_params_)
 logging.info("Best parameters found:")
 logging.info(grid_search.best_params_)
 
 # Prédiction
 start_time = time.time()
-print("🔍 Prédiction sur le test set...")
+print("Prédiction sur le test set...")
 y_pred = grid_search.predict(X_test)
 predict_duration = time.time() - start_time
-print(f"✅ Prédictions terminées en {predict_duration:.2f} secondes.")
+print(f"Prédictions terminées en {predict_duration:.2f} secondes.")
 logging.info(f"Durée prédictions : {predict_duration:.2f} secondes.")
 
 # Évaluation
-print("📊 Évaluation du modèle...")
+print("Évaluation du modèle...")
 report = classification_report(y_test, y_pred)
 print(report)
 logging.info("Rapport de classification sur le test set :")
 logging.info(report)
 
-print("🎉 Fin du script.")
+print("Fin du script.")
 logging.info("Fin du script.")
