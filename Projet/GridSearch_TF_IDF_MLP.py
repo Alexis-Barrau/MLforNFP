@@ -11,14 +11,14 @@ from sklearn.model_selection import GridSearchCV
 
 # Configuration du log
 logging.basicConfig(
-    filename='Sorties/GridSearch_TF_IDF_MLP_output.log',
+    filename='Projet/Sorties/GridSearch_TF_IDF_MLP_output.log',
     level=logging.INFO,
     format='%(asctime)s - %(message)s'
 )
 
 # Chargement des données
-Isot_true_df = pd.read_csv("data/True.csv")
-Isot_fake_df = pd.read_csv("data/Fake.csv")
+Isot_true_df = pd.read_csv("Projet/data/True.csv")
+Isot_fake_df = pd.read_csv("Projet/data/Fake.csv")
 Isot_true_df["label"] = 0
 Isot_fake_df["label"] = 1
 Isot_data = pd.concat([Isot_true_df, Isot_fake_df], ignore_index=True)
@@ -67,7 +67,7 @@ grid_search = GridSearchCV(
     param_grid=param_grid,
     cv=5,
     verbose=2,
-    n_jobs=70
+    n_jobs=7
 )
 
 # Entraînement
