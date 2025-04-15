@@ -42,16 +42,17 @@ logging.info(f"Répartition des classes (train) :\n{y_train.value_counts().to_st
 pipeline = Pipeline([
     ('tfidf', TfidfVectorizer(stop_words='english', max_df=0.7)),
     ('svd', TruncatedSVD()),
-    ('mlp', MLPClassifier(max_iter=300))
+    ('mlp', MLPClassifier(max_iter=500, early_stopping=True)
+)
 ])
 
 
 param_grid = {
-    'svd__n_components': [100, 200] #,         # nombre de dimensions après réduction
-    #'mlp__hidden_layer_sizes': [(100,), (50, 50)]#,  # une ou deux couches
-    #'mlp__activation': ['relu', 'tanh'],
-    #'mlp__alpha': [0.0001, 0.001],           # régularisation (L2)
-    #'mlp__learning_rate_init': [0.001, 0.01]
+    'svd__n_components': [100, 200],         # nombre de dimensions après réduction
+    'mlp__hidden_layer_sizes': [(100,), (50, 50)],  # une ou deux couches
+    'mlp__activation': ['relu', 'tanh'],
+    'mlp__alpha': [0.0001, 0.001],           # régularisation (L2)
+    'mlp__learning_rate_init': [0.001, 0.01]
 }
 # Nombre total de combinaisons
 total_configs = 1
