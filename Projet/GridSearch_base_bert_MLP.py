@@ -9,6 +9,8 @@ from skorch import NeuralNetClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 from joblib import dump
+from sklearn.preprocessing import StandardScaler
+
 
 # Mise en place du logging
 log_filename = "logs/GridSearch_base_Bert_MLP.log"
@@ -33,11 +35,15 @@ log_and_print(f"Using device: {device}")
 log_and_print("Chargement des embbeddings du dataset de train")
 embeddings_isot_base_bert = pd.read_csv("data/Embedded/embeddings_isot_base_bert.csv")  # Exemple
 
-X = embeddings_isot_base_bert.drop(columns=['label']).values
+X = embeddings_isot_base_bert.drop(columns=['label']).astype(np.float32).values
 y = embeddings_isot_base_bert['label'].values
 
 log_and_print("Train/Test Split")
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, shuffle=True)
+
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
 
 # On définie notre MLP PyTorch
 class MLPModule(nn.Module):
@@ -63,6 +69,7 @@ net = NeuralNetClassifier(
     batch_size=64,
     device=device,
     iterator_train__shuffle=True,
+    criterion=torch.nn.CrossEntropyLoss
 )
 
 # On effectue le GridSearch
@@ -86,6 +93,8 @@ log_and_print(f"Best CV score: {grid_search.best_score_:.4f}")
 # Application sur le test Set
 best_model = grid_search.best_estimator_
 y_pred_test = best_model.predict(X_test)
+print("Prédictions:", y_pred_test[:5])
+print("Répartition prédite:", np.unique(y_pred_test, return_counts=True))
 
 acc_test = accuracy_score(y_test, y_pred_test)
 conf_test = confusion_matrix(y_test, y_pred_test)
@@ -104,6 +113,7 @@ log_and_print("Classification Report:\n" + report_test)
 log_and_print("Chargement de Fake News")
 embeddings_fake_news_base_bert = pd.read_csv("data/Embedded/embeddings_fake_news_base_bert.csv")
 X_fake_news = embeddings_fake_news_base_bert.drop(columns=['label']).values.astype(np.float32)
+X_fake_news = scaler.transform(X_fake_news)
 y_fake_news = embeddings_fake_news_base_bert['label'].values.astype(np.int64)
 
 y_pred_fake_news = best_model.predict(X_fake_news)
@@ -120,6 +130,7 @@ log_and_print("Classification Report (Fake News):\n" + report_fake_news)
 log_and_print("Chargement de Fake Real")
 embeddings_fake_real_base_bert = pd.read_csv("data/Embedded/embeddings_fake_real_base_bert.csv")
 X_fake_real = embeddings_fake_real_base_bert.drop(columns=['label']).values.astype(np.float32)
+X_fake_real = scaler.transform(X_fake_real)
 y_fake_real = embeddings_fake_real_base_bert['label'].values.astype(np.int64)
 
 y_pred_fake_real = best_model.predict(X_fake_real)

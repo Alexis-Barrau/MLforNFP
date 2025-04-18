@@ -1,0 +1,53 @@
+2025-04-18 10:18:37,245 [INFO] Using device: cuda
+2025-04-18 10:18:37,246 [INFO] Chargement des embbeddings du dataset de train
+2025-04-18 10:18:43,272 [INFO] Train/Test Split
+2025-04-18 10:18:44,098 [INFO] Début du GridSearch
+2025-04-18 10:23:46,686 [INFO] GridSearch took 302.59 seconds.
+2025-04-18 10:23:46,686 [INFO] Best parameters: {'lr': 0.001, 'max_epochs': 30, 'module__hidden_dim': 128, 'module__num_layers': 1}
+2025-04-18 10:23:46,686 [INFO] Best CV score: 0.9833
+2025-04-18 10:23:47,779 [INFO] Test Accuracy: 0.9857
+2025-04-18 10:23:47,779 [INFO] Confusion Matrix:
+[[4278   52]
+ [  76 4574]]
+2025-04-18 10:23:47,987 [INFO] Modele sauvegardé sous Modele/pytorch_base_bert_mlp.joblib
+2025-04-18 10:23:47,987 [INFO] Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.98      0.99      0.99      4330
+           1       0.99      0.98      0.99      4650
+
+    accuracy                           0.99      8980
+   macro avg       0.99      0.99      0.99      8980
+weighted avg       0.99      0.99      0.99      8980
+
+2025-04-18 10:23:47,987 [INFO] Chargement de Fake News
+2025-04-18 10:23:53,074 [INFO] Fake News Accuracy: 0.7264
+2025-04-18 10:23:53,074 [INFO] Confusion Matrix (Fake News):
+[[6762 3625]
+ [2055 8319]]
+2025-04-18 10:23:53,074 [INFO] Classification Report (Fake News):
+              precision    recall  f1-score   support
+
+           0       0.77      0.65      0.70     10387
+           1       0.70      0.80      0.75     10374
+
+    accuracy                           0.73     20761
+   macro avg       0.73      0.73      0.72     20761
+weighted avg       0.73      0.73      0.72     20761
+
+2025-04-18 10:23:53,074 [INFO] Chargement de Fake Real
+2025-04-18 10:23:54,581 [INFO] Fake Real Accuracy: 0.6600
+2025-04-18 10:23:54,581 [INFO] Confusion Matrix (FFake Real):
+[[1734 1437]
+ [ 717 2447]]
+2025-04-18 10:23:54,582 [INFO] Classification Report (Fake Real):
+              precision    recall  f1-score   support
+
+           0       0.71      0.55      0.62      3171
+           1       0.63      0.77      0.69      3164
+
+    accuracy                           0.66      6335
+   macro avg       0.67      0.66      0.66      6335
+weighted avg       0.67      0.66      0.66      6335
+
+2025-04-18 10:23:54,582 [INFO] Script finished.
