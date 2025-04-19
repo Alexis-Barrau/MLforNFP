@@ -1,0 +1,71 @@
+2025-04-18 18:43:47,768 - BERT_FakeNews - INFO - Configuration des hyperparamètres:
+2025-04-18 18:43:47,778 - BERT_FakeNews - INFO - {
+  "MAX_LEN": 512,
+  "BATCH_SIZE": 16,
+  "EPOCHS": 3,
+  "LEARNING_RATE": 3e-05,
+  "RANDOM_SEED": 42,
+  "MODEL_NAME": "bert-base-uncased",
+  "OUTPUT_DIR": "./Modele/bert_fine_tuned/",
+  "USE_MIXED_PRECISION": true
+}
+2025-04-18 18:43:47,868 - BERT_FakeNews - INFO - Utilisation de l'appareil: cuda
+2025-04-18 18:43:47,869 - BERT_FakeNews - INFO - Chargement des données depuis data/Fake.csv et data/True.csv
+2025-04-18 18:43:48,615 - BERT_FakeNews - INFO - Données fake news chargées: 23481 exemples
+2025-04-18 18:43:49,291 - BERT_FakeNews - INFO - Données true news chargées: 21417 exemples
+2025-04-18 18:43:49,311 - BERT_FakeNews - INFO - Total d'exemples: 44898
+2025-04-18 18:43:49,312 - BERT_FakeNews - INFO - Distribution des labels: {1: 23481, 0: 21417}
+2025-04-18 18:43:49,329 - BERT_FakeNews - INFO - Exemples d'entraînement: 35918
+2025-04-18 18:43:49,329 - BERT_FakeNews - INFO - Exemples de validation: 8980
+2025-04-18 18:43:49,329 - BERT_FakeNews - INFO - Chargement du tokenizer bert-base-uncased
+2025-04-18 18:43:51,233 - BERT_FakeNews - INFO - Création des datasets
+2025-04-18 18:43:51,234 - BERT_FakeNews - INFO - Création des dataloaders
+2025-04-18 18:43:51,234 - BERT_FakeNews - INFO - Chargement du modèle bert-base-uncased
+2025-04-18 18:44:00,495 - BERT_FakeNews - INFO - Initialisation de l'optimiseur
+2025-04-18 18:44:00,497 - BERT_FakeNews - INFO - Mixed precision activée
+2025-04-18 18:44:00,497 - BERT_FakeNews - INFO - Début de l'entraînement...
+2025-04-18 18:44:00,498 - BERT_FakeNews - INFO - Début de l'epoch 1
+2025-04-18 18:44:01,754 - BERT_FakeNews - INFO -   Batch 1/2245 - Loss: 0.6907 - Temps: 1.08s
+2025-04-18 18:45:21,910 - BERT_FakeNews - INFO -   Batch 100/2245 - Loss: 0.0008 - Temps: 0.64s
+2025-04-18 18:46:43,310 - BERT_FakeNews - INFO -   Batch 200/2245 - Loss: 0.0003 - Temps: 0.64s
+2025-04-18 18:48:03,500 - BERT_FakeNews - INFO -   Batch 300/2245 - Loss: 0.0002 - Temps: 0.64s
+2025-04-18 18:49:24,751 - BERT_FakeNews - INFO -   Batch 400/2245 - Loss: 0.0002 - Temps: 0.64s
+2025-04-18 18:50:45,574 - BERT_FakeNews - INFO -   Batch 500/2245 - Loss: 0.0001 - Temps: 0.64s
+2025-04-18 18:52:06,316 - BERT_FakeNews - INFO -   Batch 600/2245 - Loss: 0.0001 - Temps: 0.64s
+2025-04-18 18:53:26,632 - BERT_FakeNews - INFO -   Batch 700/2245 - Loss: 0.0001 - Temps: 0.64s
+2025-04-18 18:54:47,579 - BERT_FakeNews - INFO -   Batch 800/2245 - Loss: 0.0001 - Temps: 0.64s
+2025-04-18 18:56:08,254 - BERT_FakeNews - INFO -   Batch 900/2245 - Loss: 0.0078 - Temps: 0.64s
+2025-04-18 18:57:28,252 - BERT_FakeNews - INFO -   Batch 1000/2245 - Loss: 0.0000 - Temps: 0.64s
+2025-04-18 18:58:48,831 - BERT_FakeNews - INFO -   Batch 1100/2245 - Loss: 0.0001 - Temps: 0.64s
+2025-04-18 19:00:09,990 - BERT_FakeNews - INFO -   Batch 1200/2245 - Loss: 0.0007 - Temps: 0.64s
+2025-04-18 19:01:30,540 - BERT_FakeNews - INFO -   Batch 1300/2245 - Loss: 0.0001 - Temps: 0.64s
+2025-04-18 19:02:49,709 - BERT_FakeNews - INFO -   Batch 1400/2245 - Loss: 0.0000 - Temps: 0.64s
+2025-04-18 19:04:09,785 - BERT_FakeNews - INFO -   Batch 1500/2245 - Loss: 0.0000 - Temps: 0.64s
+2025-04-18 19:05:29,517 - BERT_FakeNews - INFO -   Batch 1600/2245 - Loss: 0.0000 - Temps: 0.64s
+2025-04-18 19:06:49,799 - BERT_FakeNews - INFO -   Batch 1700/2245 - Loss: 0.0000 - Temps: 0.64s
+2025-04-18 19:08:09,081 - BERT_FakeNews - INFO -   Batch 1800/2245 - Loss: 0.0000 - Temps: 0.64s
+2025-04-18 19:09:28,618 - BERT_FakeNews - INFO -   Batch 1900/2245 - Loss: 0.0000 - Temps: 0.64s
+2025-04-18 19:10:48,872 - BERT_FakeNews - INFO -   Batch 2000/2245 - Loss: 0.0000 - Temps: 0.64s
+2025-04-18 19:12:09,997 - BERT_FakeNews - INFO -   Batch 2100/2245 - Loss: 0.0000 - Temps: 0.64s
+2025-04-18 19:13:31,231 - BERT_FakeNews - INFO -   Batch 2200/2245 - Loss: 0.0000 - Temps: 0.64s
+2025-04-18 19:14:07,768 - BERT_FakeNews - INFO - Fin de l'epoch 1 - Temps total: 1807.27s - Temps moyen par batch: 0.64s
+2025-04-18 19:14:07,769 - BERT_FakeNews - INFO - Epoch 1/3 - Train loss: 0.0108
+2025-04-18 19:14:07,770 - BERT_FakeNews - INFO - Début de l'évaluation (validation)
+2025-04-18 19:21:52,781 - BERT_FakeNews - INFO - Matrice de confusion (validation):
+[[4283    1]
+ [   2 4694]]
+2025-04-18 19:21:52,781 - BERT_FakeNews - INFO - Évaluation terminée - Temps total: 465.01s
+2025-04-18 19:21:52,781 - BERT_FakeNews - INFO - Accuracy (validation): 0.9997
+2025-04-18 19:21:52,781 - BERT_FakeNews - INFO - Rapport de classification (validation):
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00      4284
+           1       1.00      1.00      1.00      4696
+
+    accuracy                           1.00      8980
+   macro avg       1.00      1.00      1.00      8980
+weighted avg       1.00      1.00      1.00      8980
+
+2025-04-18 19:21:52,785 - BERT_FakeNews - INFO - Matrice de confusion (validation):
+[[4283    1]
+ [   2 4694]]
