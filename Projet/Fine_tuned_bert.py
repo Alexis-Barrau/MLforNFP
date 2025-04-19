@@ -5,7 +5,7 @@ from torch.utils.data import Dataset, DataLoader, RandomSampler, SequentialSampl
 from transformers import BertTokenizer, BertForSequenceClassification
 from torch.optim import AdamW
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, classification_report
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 import os
 import logging
 import json
@@ -54,11 +54,16 @@ CONFIG = {
     "BATCH_SIZE": 16,
     "EPOCHS": 3,
     "LEARNING_RATE": 3e-5, 
-    "RANDOM_SEED": 42,
+    "RANDOM_SEED": 13101990,
     "MODEL_NAME": "bert-base-uncased",
     "OUTPUT_DIR": "./Modele/bert_fine_tuned/",
     "USE_MIXED_PRECISION": True,  
 }
+
+output_dir = CONFIG["OUTPUT_DIR"]
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
 
 # Enregistrer la configuration
 logger.info("Configuration des hyperparamètres:")
@@ -305,13 +310,16 @@ def evaluate(model, dataloader, device, phase="validation"):
     # Calculer les métriques
     accuracy = accuracy_score(true_labels, predictions)
     report = classification_report(true_labels, predictions)
+
+    cm = confusion_matrix(true_labels, predictions)
+    logger.info(f"Matrice de confusion ({phase}):\n{cm}")
     
     eval_time = time.time() - start_time
     logger.info(f"Évaluation terminée - Temps total: {eval_time:.2f}s")
     logger.info(f"Accuracy ({phase}): {accuracy:.4f}")
     logger.info(f"Rapport de classification ({phase}):\n{report}")
     
-    return accuracy, report
+    return accuracy, report, predictions, true_labels
 
 # Fonction pour sauvegarder les métriques et hyperparamètres
 def save_metrics(metrics, output_dir, filename="metrics.json"):
@@ -340,7 +348,14 @@ for epoch in range(CONFIG["EPOCHS"]):
     logger.info(f"Epoch {epoch_num}/{CONFIG['EPOCHS']} - Train loss: {train_loss:.4f}")
     
     # Évaluation
-    val_accuracy, val_report = evaluate(model, val_dataloader, DEVICE)
+    val_accuracy, val_report, val_preds, val_true = evaluate(model, val_dataloader, DEVICE, phase="validation")
+
+    cm_val = confusion_matrix(val_true, val_preds)
+    logger.info(f"Matrice de confusion (validation):\n{cm_val}")
+
+    val_cm_path = os.path.join(output_dir, "confusion_matrix_validation.txt")
+    np.savetxt(val_cm_path, cm_val, fmt='%d')
+    logger.info(f"Matrice de confusion validation sauvegardée à {val_cm_path}")
     
     # Enregistrer les métriques de l'époque
     epoch_metrics = {
@@ -348,15 +363,12 @@ for epoch in range(CONFIG["EPOCHS"]):
         "train_loss": train_loss,
         "val_accuracy": val_accuracy,
         "val_report": val_report,
+        "val_confusion_matrix": cm_val.tolist(),
         "epoch_time": time.time() - epoch_start_time
     }
     training_metrics["epochs"].append(epoch_metrics)
 
 # Enregistrer le modèle
-output_dir = CONFIG["OUTPUT_DIR"]
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
-
 logger.info(f"Sauvegarde du modèle dans {output_dir}")
 model.save_pretrained(output_dir)
 tokenizer.save_pretrained(output_dir)
@@ -392,7 +404,15 @@ def test_on_new_dataset(model, tokenizer, test_csv_path, text_col, label_col, de
         )
         
         # Évaluer le modèle
-        test_accuracy, test_report = evaluate(model, test_dataloader, device, phase=f"test_{dataset_name}")
+        test_accuracy, test_report, preds, labels = evaluate(model, test_dataloader, device, phase=f"test_{dataset_name}")
+
+        # Confusion matrix simple
+        cm = confusion_matrix(labels, preds)
+        logger.info("Matrice de confusion :\n" + str(cm))
+
+        cm_path = os.path.join(output_dir, f"confusion_matrix_{dataset_name}.txt")
+        np.savetxt(cm_path, cm, fmt='%d')
+        logger.info(f"Matrice de confusion sauvegardée à {cm_path}")
         
         # Sauvegarder les résultats du test
         test_metrics = {
@@ -403,7 +423,7 @@ def test_on_new_dataset(model, tokenizer, test_csv_path, text_col, label_col, de
         }
         save_metrics(test_metrics, output_dir, f"test_metrics_{dataset_name}.json")
         
-        return test_accuracy, test_report
+        return test_accuracy, test_report, cm
     
     except Exception as e:
         logger.error(f"Erreur lors du test sur {dataset_name}: {str(e)}")
@@ -413,24 +433,12 @@ def test_on_new_dataset(model, tokenizer, test_csv_path, text_col, label_col, de
 logger.info("Début des tests sur les datasets externes")
 
 logger.info("Test sur Fake_Real dataset")
-fake_real_path = "fake_or_real_news.csv"
+fake_real_path = "data/fake_real.csv"
 test_on_new_dataset(model, tokenizer, fake_real_path, "text", "label", DEVICE, "fake_real")
 
 logger.info("Test sur Fake_News dataset")
 fake_news_path = "data/train.csv"
 test_on_new_dataset(model, tokenizer, fake_news_path, "text", "label", DEVICE, "fake_news")
-
-# Pour charger le modèle plus tard:
-def load_saved_model(model_dir):
-    logger.info(f"Chargement du modèle sauvegardé depuis {model_dir}")
-    try:
-        loaded_model = BertForSequenceClassification.from_pretrained(model_dir)
-        loaded_tokenizer = BertTokenizer.from_pretrained(model_dir)
-        logger.info("Modèle chargé avec succès")
-        return loaded_model, loaded_tokenizer
-    except Exception as e:
-        logger.error(f"Erreur lors du chargement du modèle: {str(e)}")
-        return None, None
 
 logger.info("Script terminé avec succès")
 logger.info(f"Journal complet disponible dans: {log_file}")
