@@ -56,7 +56,7 @@ CONFIG = {
     "LEARNING_RATE": 3e-5, 
     "RANDOM_SEED": 13101990,
     "MODEL_NAME": "bert-base-uncased",
-    "OUTPUT_DIR": "./Modele/bert_fine_tuned_titre/",
+    "OUTPUT_DIR": "./Modele/bert_fine_tuned/",
     "USE_MIXED_PRECISION": True,  
 }
 
@@ -90,7 +90,7 @@ def load_isot_dataset(fake_news_path, true_news_path):
     # Combiner les deux datasets
     df = pd.concat([fake_df, true_df], ignore_index=True)
     
-    return df[['text', 'label']]
+    return df[['title', 'label']]
 
 # Chemin des fichiers ISOT
 fake_news_path = "data/Fake.csv"
@@ -115,21 +115,21 @@ tokenizer = BertTokenizer.from_pretrained(CONFIG["MODEL_NAME"])
 
 # Classe pour le dataset BERT
 class NewsDataset(Dataset):
-    def __init__(self, texts, labels, tokenizer, max_len):
-        self.texts = texts
+    def __init__(self, titles, labels, tokenizer, max_len):
+        self.titles = titles
         self.labels = labels
         self.tokenizer = tokenizer
         self.max_len = max_len
         
     def __len__(self):
-        return len(self.texts)
+        return len(self.titles)
     
     def __getitem__(self, idx):
-        text = str(self.texts[idx])
+        title = str(self.titles[idx])
         label = self.labels[idx]
         
         encoding = self.tokenizer.encode_plus(
-            text,
+            title,
             add_special_tokens=True,
             max_length=self.max_len,
             return_token_type_ids=True,
@@ -149,14 +149,14 @@ class NewsDataset(Dataset):
 # Créer les datasets
 logger.info("Création des datasets")
 train_dataset = NewsDataset(
-    texts=train_df['text'].values,
+    titles=train_df['title'].values,
     labels=train_df['label'].values,
     tokenizer=tokenizer,
     max_len=CONFIG["MAX_LEN"]
 )
 
 val_dataset = NewsDataset(
-    texts=val_df['text'].values,
+    titles=val_df['title'].values,
     labels=val_df['label'].values,
     tokenizer=tokenizer,
     max_len=CONFIG["MAX_LEN"]
@@ -377,7 +377,7 @@ tokenizer.save_pretrained(output_dir)
 save_metrics(training_metrics, output_dir)
 
 # Fonction pour tester sur un nouveau dataset
-def test_on_new_dataset(model, tokenizer, test_csv_path, text_col, label_col, device, dataset_name):
+def test_on_new_dataset(model, tokenizer, test_csv_path, title_col, label_col, device, dataset_name):
     logger.info(f"Test sur {dataset_name} ({test_csv_path})")
     
     try:
@@ -391,7 +391,7 @@ def test_on_new_dataset(model, tokenizer, test_csv_path, text_col, label_col, de
         
         # Créer le dataset
         test_dataset = NewsDataset(
-            texts=test_df[text_col].values,
+            titles=test_df[title_col].values,
             labels=test_df[label_col].values,
             tokenizer=tokenizer,
             max_len=CONFIG["MAX_LEN"]
@@ -434,11 +434,11 @@ logger.info("Début des tests sur les datasets externes")
 
 logger.info("Test sur Fake_Real dataset")
 fake_real_path = "data/fake_real.csv"
-test_on_new_dataset(model, tokenizer, fake_real_path, "text", "label", DEVICE, "fake_real")
+test_on_new_dataset(model, tokenizer, fake_real_path, "title", "label", DEVICE, "fake_real")
 
 logger.info("Test sur Fake_News dataset")
 fake_news_path = "data/train.csv"
-test_on_new_dataset(model, tokenizer, fake_news_path, "text", "label", DEVICE, "fake_news")
+test_on_new_dataset(model, tokenizer, fake_news_path, "title", "label", DEVICE, "fake_news")
 
 logger.info("Script terminé avec succès")
 logger.info(f"Journal complet disponible dans: {log_file}")
