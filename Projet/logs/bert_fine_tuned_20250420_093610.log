@@ -1,0 +1,219 @@
+2025-04-20 09:36:10,188 - BERT_FakeNews - INFO - Configuration des hyperparamètres:
+2025-04-20 09:36:10,188 - BERT_FakeNews - INFO - {
+  "MAX_LEN": 512,
+  "BATCH_SIZE": 16,
+  "EPOCHS": 3,
+  "LEARNING_RATE": 3e-05,
+  "RANDOM_SEED": 13101990,
+  "MODEL_NAME": "bert-base-uncased",
+  "OUTPUT_DIR": "./Modele/bert_fine_tuned/",
+  "USE_MIXED_PRECISION": true
+}
+2025-04-20 09:36:10,284 - BERT_FakeNews - INFO - Utilisation de l'appareil: cuda
+2025-04-20 09:36:10,284 - BERT_FakeNews - INFO - Chargement des données depuis data/Fake.csv et data/True.csv
+2025-04-20 09:36:11,107 - BERT_FakeNews - INFO - Données fake news chargées: 23481 exemples
+2025-04-20 09:36:11,854 - BERT_FakeNews - INFO - Données true news chargées: 21417 exemples
+2025-04-20 09:36:11,869 - BERT_FakeNews - INFO - Total d'exemples: 44898
+2025-04-20 09:36:11,871 - BERT_FakeNews - INFO - Distribution des labels: {1: 23481, 0: 21417}
+2025-04-20 09:36:11,889 - BERT_FakeNews - INFO - Exemples d'entraînement: 35918
+2025-04-20 09:36:11,889 - BERT_FakeNews - INFO - Exemples de validation: 8980
+2025-04-20 09:36:11,889 - BERT_FakeNews - INFO - Chargement du tokenizer bert-base-uncased
+2025-04-20 09:36:14,262 - BERT_FakeNews - INFO - Création des datasets
+2025-04-20 09:36:14,262 - BERT_FakeNews - INFO - Création des dataloaders
+2025-04-20 09:36:14,263 - BERT_FakeNews - INFO - Chargement du modèle bert-base-uncased
+2025-04-20 09:36:21,039 - BERT_FakeNews - INFO - Initialisation de l'optimiseur
+2025-04-20 09:36:21,041 - BERT_FakeNews - INFO - Mixed precision activée
+2025-04-20 09:36:21,043 - BERT_FakeNews - INFO - Début de l'entraînement...
+2025-04-20 09:36:21,044 - BERT_FakeNews - INFO - Début de l'epoch 1
+2025-04-20 09:36:22,604 - BERT_FakeNews - INFO -   Batch 1/2245 - Loss: 0.6879 - Temps: 1.48s
+2025-04-20 09:37:31,563 - BERT_FakeNews - INFO -   Batch 100/2245 - Loss: 0.0061 - Temps: 0.63s
+2025-04-20 09:38:41,567 - BERT_FakeNews - INFO -   Batch 200/2245 - Loss: 0.0748 - Temps: 0.63s
+2025-04-20 09:39:51,565 - BERT_FakeNews - INFO -   Batch 300/2245 - Loss: 0.2390 - Temps: 0.63s
+2025-04-20 09:41:01,592 - BERT_FakeNews - INFO -   Batch 400/2245 - Loss: 0.0025 - Temps: 0.64s
+2025-04-20 09:42:11,579 - BERT_FakeNews - INFO -   Batch 500/2245 - Loss: 0.4838 - Temps: 0.63s
+2025-04-20 09:43:21,568 - BERT_FakeNews - INFO -   Batch 600/2245 - Loss: 0.2637 - Temps: 0.63s
+2025-04-20 09:44:31,571 - BERT_FakeNews - INFO -   Batch 700/2245 - Loss: 0.3257 - Temps: 0.64s
+2025-04-20 09:45:41,674 - BERT_FakeNews - INFO -   Batch 800/2245 - Loss: 0.0962 - Temps: 0.64s
+2025-04-20 09:46:51,683 - BERT_FakeNews - INFO -   Batch 900/2245 - Loss: 0.0012 - Temps: 0.63s
+2025-04-20 09:48:01,667 - BERT_FakeNews - INFO -   Batch 1000/2245 - Loss: 0.2076 - Temps: 0.63s
+2025-04-20 09:49:11,669 - BERT_FakeNews - INFO -   Batch 1100/2245 - Loss: 0.3906 - Temps: 0.64s
+2025-04-20 09:50:21,670 - BERT_FakeNews - INFO -   Batch 1200/2245 - Loss: 0.0057 - Temps: 0.64s
+2025-04-20 09:51:31,721 - BERT_FakeNews - INFO -   Batch 1300/2245 - Loss: 0.0007 - Temps: 0.64s
+2025-04-20 09:52:41,674 - BERT_FakeNews - INFO -   Batch 1400/2245 - Loss: 0.0034 - Temps: 0.63s
+2025-04-20 09:53:51,772 - BERT_FakeNews - INFO -   Batch 1500/2245 - Loss: 0.1366 - Temps: 0.64s
+2025-04-20 09:55:01,774 - BERT_FakeNews - INFO -   Batch 1600/2245 - Loss: 0.0071 - Temps: 0.64s
+2025-04-20 09:56:11,830 - BERT_FakeNews - INFO -   Batch 1700/2245 - Loss: 0.0008 - Temps: 0.64s
+2025-04-20 09:57:21,868 - BERT_FakeNews - INFO -   Batch 1800/2245 - Loss: 0.0104 - Temps: 0.63s
+2025-04-20 09:58:31,900 - BERT_FakeNews - INFO -   Batch 1900/2245 - Loss: 0.4961 - Temps: 0.64s
+2025-04-20 09:59:41,964 - BERT_FakeNews - INFO -   Batch 2000/2245 - Loss: 0.7791 - Temps: 0.63s
+2025-04-20 10:00:52,028 - BERT_FakeNews - INFO -   Batch 2100/2245 - Loss: 0.0041 - Temps: 0.64s
+2025-04-20 10:02:02,069 - BERT_FakeNews - INFO -   Batch 2200/2245 - Loss: 0.0160 - Temps: 0.63s
+2025-04-20 10:02:33,519 - BERT_FakeNews - INFO - Fin de l'epoch 1 - Temps total: 1572.48s - Temps moyen par batch: 0.64s
+2025-04-20 10:02:33,520 - BERT_FakeNews - INFO - Epoch 1/3 - Train loss: 0.0917
+2025-04-20 10:02:33,522 - BERT_FakeNews - INFO - Début de l'évaluation (validation)
+2025-04-20 10:09:33,925 - BERT_FakeNews - INFO - Matrice de confusion (validation):
+[[4235   49]
+ [  63 4633]]
+2025-04-20 10:09:33,926 - BERT_FakeNews - INFO - Évaluation terminée - Temps total: 420.40s
+2025-04-20 10:09:33,926 - BERT_FakeNews - INFO - Accuracy (validation): 0.9875
+2025-04-20 10:09:33,926 - BERT_FakeNews - INFO - Rapport de classification (validation):
+              precision    recall  f1-score   support
+
+           0       0.99      0.99      0.99      4284
+           1       0.99      0.99      0.99      4696
+
+    accuracy                           0.99      8980
+   macro avg       0.99      0.99      0.99      8980
+weighted avg       0.99      0.99      0.99      8980
+
+2025-04-20 10:09:33,931 - BERT_FakeNews - INFO - Matrice de confusion (validation):
+[[4235   49]
+ [  63 4633]]
+2025-04-20 10:09:33,931 - BERT_FakeNews - INFO - Matrice de confusion validation sauvegardée à ./Modele/bert_fine_tuned/confusion_matrix_validation.txt
+2025-04-20 10:09:33,932 - BERT_FakeNews - INFO - Début de l'epoch 2
+2025-04-20 10:09:34,636 - BERT_FakeNews - INFO -   Batch 1/2245 - Loss: 0.0020 - Temps: 0.64s
+2025-04-20 10:10:43,998 - BERT_FakeNews - INFO -   Batch 100/2245 - Loss: 0.0022 - Temps: 0.64s
+2025-04-20 10:11:54,070 - BERT_FakeNews - INFO -   Batch 200/2245 - Loss: 0.0008 - Temps: 0.64s
+2025-04-20 10:13:04,080 - BERT_FakeNews - INFO -   Batch 300/2245 - Loss: 0.0005 - Temps: 0.63s
+2025-04-20 10:14:14,070 - BERT_FakeNews - INFO -   Batch 400/2245 - Loss: 0.0002 - Temps: 0.64s
+2025-04-20 10:15:24,078 - BERT_FakeNews - INFO -   Batch 500/2245 - Loss: 0.0043 - Temps: 0.64s
+2025-04-20 10:16:34,070 - BERT_FakeNews - INFO -   Batch 600/2245 - Loss: 0.0121 - Temps: 0.63s
+2025-04-20 10:17:44,073 - BERT_FakeNews - INFO -   Batch 700/2245 - Loss: 0.1662 - Temps: 0.63s
+2025-04-20 10:18:53,965 - BERT_FakeNews - INFO -   Batch 800/2245 - Loss: 0.0002 - Temps: 0.63s
+2025-04-20 10:20:03,978 - BERT_FakeNews - INFO -   Batch 900/2245 - Loss: 0.0011 - Temps: 0.64s
+2025-04-20 10:21:13,988 - BERT_FakeNews - INFO -   Batch 1000/2245 - Loss: 0.0016 - Temps: 0.64s
+2025-04-20 10:22:23,994 - BERT_FakeNews - INFO -   Batch 1100/2245 - Loss: 0.0001 - Temps: 0.64s
+2025-04-20 10:23:34,078 - BERT_FakeNews - INFO -   Batch 1200/2245 - Loss: 0.0012 - Temps: 0.64s
+2025-04-20 10:24:44,207 - BERT_FakeNews - INFO -   Batch 1300/2245 - Loss: 0.0005 - Temps: 0.64s
+2025-04-20 10:25:54,179 - BERT_FakeNews - INFO -   Batch 1400/2245 - Loss: 0.4956 - Temps: 0.63s
+2025-04-20 10:27:04,171 - BERT_FakeNews - INFO -   Batch 1500/2245 - Loss: 0.0002 - Temps: 0.64s
+2025-04-20 10:28:14,187 - BERT_FakeNews - INFO -   Batch 1600/2245 - Loss: 0.0002 - Temps: 0.64s
+2025-04-20 10:29:24,210 - BERT_FakeNews - INFO -   Batch 1700/2245 - Loss: 0.0004 - Temps: 0.64s
+2025-04-20 10:30:34,176 - BERT_FakeNews - INFO -   Batch 1800/2245 - Loss: 0.1663 - Temps: 0.64s
+2025-04-20 10:31:44,231 - BERT_FakeNews - INFO -   Batch 1900/2245 - Loss: 0.0002 - Temps: 0.64s
+2025-04-20 10:32:54,267 - BERT_FakeNews - INFO -   Batch 2000/2245 - Loss: 0.0022 - Temps: 0.63s
+2025-04-20 10:34:04,271 - BERT_FakeNews - INFO -   Batch 2100/2245 - Loss: 0.4514 - Temps: 0.63s
+2025-04-20 10:35:14,289 - BERT_FakeNews - INFO -   Batch 2200/2245 - Loss: 0.0003 - Temps: 0.63s
+2025-04-20 10:35:45,699 - BERT_FakeNews - INFO - Fin de l'epoch 2 - Temps total: 1571.77s - Temps moyen par batch: 0.64s
+2025-04-20 10:35:45,700 - BERT_FakeNews - INFO - Epoch 2/3 - Train loss: 0.0375
+2025-04-20 10:35:45,701 - BERT_FakeNews - INFO - Début de l'évaluation (validation)
+2025-04-20 10:42:45,052 - BERT_FakeNews - INFO - Matrice de confusion (validation):
+[[4252   32]
+ [  62 4634]]
+2025-04-20 10:42:45,053 - BERT_FakeNews - INFO - Évaluation terminée - Temps total: 419.35s
+2025-04-20 10:42:45,053 - BERT_FakeNews - INFO - Accuracy (validation): 0.9895
+2025-04-20 10:42:45,053 - BERT_FakeNews - INFO - Rapport de classification (validation):
+              precision    recall  f1-score   support
+
+           0       0.99      0.99      0.99      4284
+           1       0.99      0.99      0.99      4696
+
+    accuracy                           0.99      8980
+   macro avg       0.99      0.99      0.99      8980
+weighted avg       0.99      0.99      0.99      8980
+
+2025-04-20 10:42:45,063 - BERT_FakeNews - INFO - Matrice de confusion (validation):
+[[4252   32]
+ [  62 4634]]
+2025-04-20 10:42:45,064 - BERT_FakeNews - INFO - Matrice de confusion validation sauvegardée à ./Modele/bert_fine_tuned/confusion_matrix_validation.txt
+2025-04-20 10:42:45,066 - BERT_FakeNews - INFO - Début de l'epoch 3
+2025-04-20 10:42:45,776 - BERT_FakeNews - INFO -   Batch 1/2245 - Loss: 0.0009 - Temps: 0.64s
+2025-04-20 10:43:55,067 - BERT_FakeNews - INFO -   Batch 100/2245 - Loss: 0.0001 - Temps: 0.63s
+2025-04-20 10:45:05,119 - BERT_FakeNews - INFO -   Batch 200/2245 - Loss: 0.0003 - Temps: 0.64s
+2025-04-20 10:46:15,064 - BERT_FakeNews - INFO -   Batch 300/2245 - Loss: 0.0004 - Temps: 0.63s
+2025-04-20 10:47:25,121 - BERT_FakeNews - INFO -   Batch 400/2245 - Loss: 0.0000 - Temps: 0.64s
+2025-04-20 10:48:35,220 - BERT_FakeNews - INFO -   Batch 500/2245 - Loss: 0.0001 - Temps: 0.64s
+2025-04-20 10:49:45,282 - BERT_FakeNews - INFO -   Batch 600/2245 - Loss: 0.0000 - Temps: 0.64s
+2025-04-20 10:50:55,277 - BERT_FakeNews - INFO -   Batch 700/2245 - Loss: 0.0001 - Temps: 0.64s
+2025-04-20 10:52:05,390 - BERT_FakeNews - INFO -   Batch 800/2245 - Loss: 0.0003 - Temps: 0.64s
+2025-04-20 10:53:15,423 - BERT_FakeNews - INFO -   Batch 900/2245 - Loss: 0.0001 - Temps: 0.64s
+2025-04-20 10:54:25,398 - BERT_FakeNews - INFO -   Batch 1000/2245 - Loss: 0.0000 - Temps: 0.64s
+2025-04-20 10:55:35,475 - BERT_FakeNews - INFO -   Batch 1100/2245 - Loss: 0.0000 - Temps: 0.63s
+2025-04-20 10:56:45,468 - BERT_FakeNews - INFO -   Batch 1200/2245 - Loss: 0.0001 - Temps: 0.64s
+2025-04-20 10:57:55,533 - BERT_FakeNews - INFO -   Batch 1300/2245 - Loss: 0.3773 - Temps: 0.64s
+2025-04-20 10:59:05,482 - BERT_FakeNews - INFO -   Batch 1400/2245 - Loss: 0.0004 - Temps: 0.64s
+2025-04-20 11:00:15,465 - BERT_FakeNews - INFO -   Batch 1500/2245 - Loss: 0.0001 - Temps: 0.63s
+2025-04-20 11:01:25,477 - BERT_FakeNews - INFO -   Batch 1600/2245 - Loss: 0.0001 - Temps: 0.64s
+2025-04-20 11:02:35,465 - BERT_FakeNews - INFO -   Batch 1700/2245 - Loss: 0.0001 - Temps: 0.63s
+2025-04-20 11:03:45,464 - BERT_FakeNews - INFO -   Batch 1800/2245 - Loss: 0.0000 - Temps: 0.63s
+2025-04-20 11:04:55,492 - BERT_FakeNews - INFO -   Batch 1900/2245 - Loss: 0.0000 - Temps: 0.64s
+2025-04-20 11:06:05,465 - BERT_FakeNews - INFO -   Batch 2000/2245 - Loss: 0.0000 - Temps: 0.63s
+2025-04-20 11:07:15,470 - BERT_FakeNews - INFO -   Batch 2100/2245 - Loss: 0.0001 - Temps: 0.63s
+2025-04-20 11:08:25,477 - BERT_FakeNews - INFO -   Batch 2200/2245 - Loss: 0.0000 - Temps: 0.63s
+2025-04-20 11:08:56,899 - BERT_FakeNews - INFO - Fin de l'epoch 3 - Temps total: 1571.83s - Temps moyen par batch: 0.64s
+2025-04-20 11:08:56,900 - BERT_FakeNews - INFO - Epoch 3/3 - Train loss: 0.0173
+2025-04-20 11:08:56,902 - BERT_FakeNews - INFO - Début de l'évaluation (validation)
+2025-04-20 11:15:55,969 - BERT_FakeNews - INFO - Matrice de confusion (validation):
+[[4266   18]
+ [ 100 4596]]
+2025-04-20 11:15:55,970 - BERT_FakeNews - INFO - Évaluation terminée - Temps total: 419.07s
+2025-04-20 11:15:55,970 - BERT_FakeNews - INFO - Accuracy (validation): 0.9869
+2025-04-20 11:15:55,970 - BERT_FakeNews - INFO - Rapport de classification (validation):
+              precision    recall  f1-score   support
+
+           0       0.98      1.00      0.99      4284
+           1       1.00      0.98      0.99      4696
+
+    accuracy                           0.99      8980
+   macro avg       0.99      0.99      0.99      8980
+weighted avg       0.99      0.99      0.99      8980
+
+2025-04-20 11:15:55,977 - BERT_FakeNews - INFO - Matrice de confusion (validation):
+[[4266   18]
+ [ 100 4596]]
+2025-04-20 11:15:55,977 - BERT_FakeNews - INFO - Matrice de confusion validation sauvegardée à ./Modele/bert_fine_tuned/confusion_matrix_validation.txt
+2025-04-20 11:15:55,977 - BERT_FakeNews - INFO - Sauvegarde du modèle dans ./Modele/bert_fine_tuned/
+2025-04-20 11:15:58,658 - BERT_FakeNews - INFO - Métriques sauvegardées dans ./Modele/bert_fine_tuned/metrics.json
+2025-04-20 11:15:58,659 - BERT_FakeNews - INFO - Début des tests sur les datasets externes
+2025-04-20 11:15:58,659 - BERT_FakeNews - INFO - Test sur Fake_Real dataset
+2025-04-20 11:15:58,659 - BERT_FakeNews - INFO - Test sur fake_real (data/fake_real.csv)
+2025-04-20 11:15:59,385 - BERT_FakeNews - INFO - Dataset chargé: 6335 exemples
+2025-04-20 11:15:59,386 - BERT_FakeNews - INFO - Distribution des labels: {0: 3171, 1: 3164}
+2025-04-20 11:15:59,387 - BERT_FakeNews - INFO - Début de l'évaluation (test_fake_real)
+2025-04-20 11:20:54,203 - BERT_FakeNews - INFO - Matrice de confusion (test_fake_real):
+[[1928 1243]
+ [1074 2090]]
+2025-04-20 11:20:54,203 - BERT_FakeNews - INFO - Évaluation terminée - Temps total: 294.82s
+2025-04-20 11:20:54,203 - BERT_FakeNews - INFO - Accuracy (test_fake_real): 0.6343
+2025-04-20 11:20:54,203 - BERT_FakeNews - INFO - Rapport de classification (test_fake_real):
+              precision    recall  f1-score   support
+
+           0       0.64      0.61      0.62      3171
+           1       0.63      0.66      0.64      3164
+
+    accuracy                           0.63      6335
+   macro avg       0.63      0.63      0.63      6335
+weighted avg       0.63      0.63      0.63      6335
+
+2025-04-20 11:20:54,207 - BERT_FakeNews - INFO - Matrice de confusion :
+[[1928 1243]
+ [1074 2090]]
+2025-04-20 11:20:54,208 - BERT_FakeNews - INFO - Matrice de confusion sauvegardée à ./Modele/bert_fine_tuned/confusion_matrix_fake_real.txt
+2025-04-20 11:20:54,208 - BERT_FakeNews - INFO - Métriques sauvegardées dans ./Modele/bert_fine_tuned/test_metrics_fake_real.json
+2025-04-20 11:20:54,210 - BERT_FakeNews - INFO - Test sur Fake_News dataset
+2025-04-20 11:20:54,210 - BERT_FakeNews - INFO - Test sur fake_news (data/train.csv)
+2025-04-20 11:20:55,531 - BERT_FakeNews - INFO - Dataset chargé: 20800 exemples
+2025-04-20 11:20:55,532 - BERT_FakeNews - INFO - Distribution des labels: {1: 10413, 0: 10387}
+2025-04-20 11:20:55,533 - BERT_FakeNews - INFO - Début de l'évaluation (test_fake_news)
+2025-04-20 11:37:04,843 - BERT_FakeNews - INFO - Matrice de confusion (test_fake_news):
+[[6607 3780]
+ [3989 6424]]
+2025-04-20 11:37:04,843 - BERT_FakeNews - INFO - Évaluation terminée - Temps total: 969.31s
+2025-04-20 11:37:04,843 - BERT_FakeNews - INFO - Accuracy (test_fake_news): 0.6265
+2025-04-20 11:37:04,843 - BERT_FakeNews - INFO - Rapport de classification (test_fake_news):
+              precision    recall  f1-score   support
+
+           0       0.62      0.64      0.63     10387
+           1       0.63      0.62      0.62     10413
+
+    accuracy                           0.63     20800
+   macro avg       0.63      0.63      0.63     20800
+weighted avg       0.63      0.63      0.63     20800
+
+2025-04-20 11:37:04,859 - BERT_FakeNews - INFO - Matrice de confusion :
+[[6607 3780]
+ [3989 6424]]
+2025-04-20 11:37:04,860 - BERT_FakeNews - INFO - Matrice de confusion sauvegardée à ./Modele/bert_fine_tuned/confusion_matrix_fake_news.txt
+2025-04-20 11:37:04,860 - BERT_FakeNews - INFO - Métriques sauvegardées dans ./Modele/bert_fine_tuned/test_metrics_fake_news.json
+2025-04-20 11:37:04,881 - BERT_FakeNews - INFO - Script terminé avec succès
+2025-04-20 11:37:04,881 - BERT_FakeNews - INFO - Journal complet disponible dans: logs/bert_fine_tuned_20250420_093610.log
