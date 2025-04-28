@@ -8,17 +8,22 @@ from sklearn.decomposition import TruncatedSVD
 from sklearn.neural_network import MLPClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
+import os
+
 
 # Configuration du log
+log_filename = 'logs/GridSearch_TF_IDF_MLP_output.log'
+os.makedirs("logs", exist_ok=True)
+
 logging.basicConfig(
-    filename='Projet/Sorties/GridSearch_TF_IDF_MLP_output.log',
+    filename=log_filename,
     level=logging.INFO,
     format='%(asctime)s - %(message)s'
 )
 
 # Chargement des données
-Isot_true_df = pd.read_csv("Projet/data/True.csv")
-Isot_fake_df = pd.read_csv("Projet/data/Fake.csv")
+Isot_true_df = pd.read_csv("data/True.csv")
+Isot_fake_df = pd.read_csv("data/Fake.csv")
 Isot_true_df["label"] = 0
 Isot_fake_df["label"] = 1
 Isot_data = pd.concat([Isot_true_df, Isot_fake_df], ignore_index=True)

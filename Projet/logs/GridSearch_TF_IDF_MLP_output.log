@@ -1,0 +1,23 @@
+2025-04-24 08:54:57,643 - Nombre total de documents : 44898
+2025-04-24 08:54:57,643 - Train size : 35918 | Test size : 8980
+2025-04-24 08:54:57,644 - Répartition des classes (train) :
+label
+1    18831
+0    17087
+2025-04-24 08:54:57,644 - Nombre total de combinaisons testées : 32
+2025-04-24 08:54:57,644 - Début de l'entraînement avec GridSearchCV...
+2025-04-24 09:06:03,432 - Durée entraînement GridSearchCV : 665.79 secondes.
+2025-04-24 09:06:03,433 - Best parameters found:
+2025-04-24 09:06:03,433 - {'mlp__activation': 'relu', 'mlp__alpha': 0.001, 'mlp__hidden_layer_sizes': (100,), 'mlp__learning_rate_init': 0.01, 'svd__n_components': 200}
+2025-04-24 09:06:06,093 - Durée prédictions : 2.66 secondes.
+2025-04-24 09:06:06,106 - Rapport de classification sur le test set :
+2025-04-24 09:06:06,106 -               precision    recall  f1-score   support
+
+           0       0.99      0.98      0.99      4330
+           1       0.98      0.99      0.99      4650
+
+    accuracy                           0.99      8980
+   macro avg       0.99      0.99      0.99      8980
+weighted avg       0.99      0.99      0.99      8980
+
+2025-04-24 09:06:06,106 - Fin du script.
